@@ -5,8 +5,7 @@ import {Link} from 'react-router';
 
 export default function AllCampuses(props) {
   const campuses = props.allCampuses;
-  console.log('props', props)
-  console.log("campuses", campuses)
+  const deleteCampus = props.deleteCampus;
   return (
     <div className="col-lg-2">
     {
@@ -14,6 +13,7 @@ export default function AllCampuses(props) {
         return (
           <div key={campus.id}>
             <Link to={`/campuses/${campus.id}`}>{campus.name}</Link>
+            <button value={campus.id} onClick={event => deleteCampus(event.target.value)}>Delete Campus</button>
           </div>
         )
       })

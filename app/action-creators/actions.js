@@ -7,6 +7,9 @@ export const SET_SELECTED_STUDENT = 'SET_SELECTED_STUDENT';
 export const SET_SELECTED_CAMPUS = 'SET_SELECTED_CAMPUS';
 export const GET_STUDENTS = 'GET_STUDENTS';
 export const GET_CAMPUSES = 'GET_CAMPUSES';
+export const DELETE_STUDENT = 'DELETE_STUDENT';
+export const DELETE_CAMPUS = 'DELETE_CAMPUS';
+export const ADD_CAMPUS = 'ADD_CAMPUS';
 
 
 // synchronous action creators:
@@ -38,6 +41,27 @@ export const getStudents = (students) => {
   }
 }
 
+export const deleteStudent = (studentId) => {
+  return {
+    type: DELETE_STUDENT,
+    studentId
+  }
+}
+
+export const deleteCampus = (campusId) => {
+  return {
+    type: DELETE_CAMPUS,
+    campusId
+  }
+}
+
+export const addCampus = (campus) => {
+  return {
+    type: ADD_CAMPUS,
+    name: campus.name,
+    image: campus.image
+  }
+}
 
 
 // thunks:
@@ -83,5 +107,38 @@ export const getCampusesFromServer = () => {
         dispatch(getCampuses(campuses))
       })
       .catch(err => console.error(err));
+  }
+}
+
+export const deleteStudentFromServer = (studentId) => {
+  return (dispatch) => {
+    axios.delete(`/api/students/${studentId}`)
+      .then(res => {
+        dispatch(deleteStudent(studentId))
+      })
+      .catch(error => console.error(error));
+  }
+}
+
+export const deleteCampusFromServer = (campusId) => {
+  return (dispatch) => {
+    axios.delete(`/api/campuses/${campusId}`)
+      .then(res => {
+        dispatch(deleteCampus(campusId))
+      })
+      .catch(error => console.log(error));
+  }
+}
+
+export const addNewCampusToServer = (campus) => {
+  return (dispatch) => {
+    axios.post('/', {
+      name: campus.name,
+      image: campus.image
+    })
+      .then(res => res.data)
+      .then(newCampus => {
+        dispatch(addCampus(newCampus))
+      })
   }
 }
