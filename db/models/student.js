@@ -15,7 +15,7 @@ module.exports = db.define('student', {
     isEmail: true
   }
 }, {
-  defaultScope: {
-    include: [Campus] // includes associated campus instance (not just id) when querying student table, right?
-  }
+  // defaultScope: {
+  //   include: [{all: true}] // throwing 'cannot getTable of undefined' but not when eager loading in query
+  // }
 })

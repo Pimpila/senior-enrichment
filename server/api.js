@@ -12,4 +12,9 @@ const studentRouter = require('./student');
 api.use('/campuses', campusRouter);
 api.use('/students', studentRouter);
 
+// api.use((err, req, res, next) => {
+// 	console.log(err.stack)
+// 	next();
+// })
+
 module.exports = api

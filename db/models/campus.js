@@ -10,10 +10,10 @@ module.exports = db.define('campus', {
     allowNull: false
   },
   image: {
-    type: Sequelize.BLOB
+    type: Sequelize.STRING
   }
 }, {
-  defaultScope: {
-    include: [Student] // includes all associated students when querying campus table, right??
-  }
+  // defaultScope: {
+  //   include: [{all: true}] // throwing 'cannot getTable of undefined' but not when eager loading in query
+  // }
 })
