@@ -39,10 +39,10 @@ render(
     <Router history={hashHistory}>
       <Route path="/" onEnter={loadAllCampuses} >
         <Route path="/campuses" component={AllCampusesContainer} />
+        <Route path="/campuses/new-campus" component={NewCampusContainer} />
         <Route path="/campuses/:campusId" component={SingleCampusContainer} onEnter={loadSelectedCampus} />
         <Route path="/students" component={AllStudentsContainer} onEnter={loadAllStudents} />
-        <Route path="/students/:studentId" component={SingleStudentContainer} onEnter={loadSelectedStudent}/>
-        <Route path={"/campuses/new-campus"} component={NewCampusContainer} />
+        <Route path="/students/:studentId" component={SingleStudentContainer} onEnter={loadSelectedStudent} />
         <IndexRedirect to="/campuses" />
       </Route>
     </Router>
